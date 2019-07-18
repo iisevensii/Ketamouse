@@ -25,21 +25,22 @@ from TriviaHighScoreTable import TriviaHighScoreTable
 from utilities import *
 import json
 
+
 class LabRatBot(discord.Client):
     def __init__(self, **options):
         discord.Client.__init__(self, **options)
 
         self.trigger = '.'
 
-        self.nickname = 'Ketamouse'
-        self.avatar = 'rat.jpg'
-        self.status = 'with research chemicals' #Discord sets 'Playing {}' with game name. This variable is the game name
+        self.nickname = 'LPS Bot'
+        self.avatar = 'Rick2a.png'
+        self.status = 'researching' #Discord sets 'Playing {}' with game name. This variable is the game name
 
         self.trivia_instance = None
         self.in_trivia = False
 
-        self.bot_spam_channel = '337311436327878656'
-        self.mouse_discord_id = '91929884145766400'
+        self.bot_spam_channel = '546192924409331712'
+        self.mouse_discord_id = '380825355168120832'
 
         self.current_directory = os.path.dirname(os.path.realpath(__file__))
 
@@ -83,8 +84,6 @@ class LabRatBot(discord.Client):
 
         self.max_warnings = 5
 
-        
-
     @asyncio.coroutine
     def on_server_role_create(self,role : discord.Role):
         print('A new role, {}, has been created. Announcing to staff chat'.format(role.name))
@@ -105,11 +104,6 @@ class LabRatBot(discord.Client):
         print('Logged in as \'{}\''.format(self.user.name))
         print('User ID: {}'.format(self.user.id))
 
-        for serv in self.guilds:
-            self.server = serv
-
-        print(self.server)
-
         print('Setting status: "{}"'.format(self.status))
         try:
             yield from self.change_presence(activity=discord.Game(name=self.status))
@@ -118,7 +112,8 @@ class LabRatBot(discord.Client):
 
         print('Setting avatar and nickname - {}'.format(self.avatar))
         try:
-            yield from self.user.edit(username=self.nickname,avatar = open(self.current_directory+'\\{}'.format(self.avatar),'rb').read())
+            yield from self.user.edit(username=self.nickname, avatar=open(self.current_directory+'\\{}'
+                                                                          .format(self.avatar), 'rb').read())
         except Exception as e:
             print('Errors have occured... ' + str(e))
 
@@ -127,8 +122,8 @@ class LabRatBot(discord.Client):
         print('Awaiting messages')
 
     @asyncio.coroutine
-    def on_message(self, msg : discord.Message):
-        print('[MESSAGE] [{}] [{}] ({}) - {}'.format(msg.channel.name,msg.author,msg.author.top_role,msg.content))
+    def on_message(self, msg: discord.Message):
+        print('[MESSAGE] [{}] [{}] ({}) - {}'.format(msg.channel.name, msg.author, msg.author.top_role, msg.content))
 
         message = str(msg.content).lower()
 
@@ -764,4 +759,4 @@ class LabRatBot(discord.Client):
 #endregion
 
 client = LabRatBot()
-client.run('MzgxMjMzMDQzNjM1MDQ0MzUy.DPELiw.wpRRJul1-5dSo9DYWiya8lTUPvo')
+client.run('NjAxNDYzOTQxMzQzNzM5OTEy.XTCt4A.oT7Zqphx86cM3i_f-2nX1RlILr4')
