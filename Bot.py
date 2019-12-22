@@ -121,6 +121,7 @@ class LabRatBot(discord.Client):
         print('============================')
         print('Awaiting messages')
 
+        yield from self.guilds[0].get_channel(546192924409331712).send("I must've fallen asleep, I'm awake now...I swear!")
     @asyncio.coroutine
     def on_message(self, msg: discord.Message):
         print('[MESSAGE] [{}] [{}] ({}) - {}'.format(msg.channel.name, msg.author, msg.author.top_role, msg.content))
